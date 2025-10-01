@@ -1,0 +1,79 @@
+package com.example.demo.user;
+
+import lombok.Builder;
+import lombok.Data;
+
+import java.awt.*;
+
+public class UserRes {
+
+	@Data
+	public static class JoinDTO {
+		private Long id;
+		private String username;
+		private String email;
+		private String createdAt;
+
+		@Builder
+		public JoinDTO(User user) {
+			this.id = user.getId();
+			this.username = user.getUsername();
+			this.email = user.getEmail();
+			this.createdAt = user.getCreatedAt().toString();
+		}
+	}
+
+	@Data
+	public static class LoginDTO {
+		private Long id;
+		private String username;
+		private String email;
+
+		@Builder
+		public LoginDTO(User user) {
+			this.id = user.getId();
+			this.username = user.getUsername();
+			this.email = user.getEmail();
+		}
+	}
+
+	@Data
+	public static class UpdateDTO {
+		private Long id;
+		private String username;
+		private String email;
+
+		@Builder
+		public UpdateDTO(User user) {
+			this.id = user.getId();
+			this.username = user.getUsername();
+			this.email = user.getEmail();
+		}
+	}
+
+	@Data
+	public static class ListDTO {
+		private Long id;
+		private String username;
+
+		@Builder
+		public ListDTO(User user) {
+			this.id = user.getId();
+			this.username = user.getUsername();
+		}
+	}
+
+	@Data
+	public static class DetailDTO {
+		private Long id;
+		private String username;
+		private String email;
+
+		@Builder
+		public DetailDTO(User user) {
+			this.id = user.getId();
+			this.username = user.getUsername();
+			this.email = user.getEmail();
+		}
+	}
+}
