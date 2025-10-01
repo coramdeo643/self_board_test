@@ -22,15 +22,16 @@ public class BoardServ {
 
 	private final BoardRepo boardRepo;
 
-	public List<BoardResp.ListDTO> list(int page, int size) {
+	public Page<Board> list(int page, int size) {
 		Pageable pageable = PageRequest.of(page, size, Sort.by("id").descending());
-		Page<Board> boardPage = boardRepo.findAllJoinUser(pageable);
-		List<BoardResp.ListDTO> boardList = new ArrayList<>();
-		for (Board b : boardPage.getContent()) {
-			BoardResp.ListDTO listDTO = new BoardResp.ListDTO(b);
-			boardList.add(listDTO);
-		}
-		return boardList;
+		return boardRepo.findAllJoinUser(pageable);
+//		Page<Board> boardPage = boardRepo.findAllJoinUser(pageable);
+//		List<BoardResp.ListDTO> boardList = new ArrayList<>();
+//		for (Board b : boardPage.getContent()) {
+//			BoardResp.ListDTO listDTO = new BoardResp.ListDTO(b);
+//			boardList.add(listDTO);
+//		}
+//		return boardList;
 	}
 
 	public BoardResp.DetailDTO detail(
