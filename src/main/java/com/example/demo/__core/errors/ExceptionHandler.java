@@ -1,6 +1,7 @@
 package com.example.demo.__core.errors;
 
 import com.example.demo.__core.common.ApiUtil;
+import com.example.demo.__core.errors.except.*;
 import jakarta.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
