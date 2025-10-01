@@ -26,12 +26,14 @@ public class UserResp {
 		private Long id;
 		private String username;
 		private String email;
+		private String token;
 
 		@Builder
-		public LoginDTO(User user) {
+		public LoginDTO(User user, String token) {
 			this.id = user.getId();
 			this.username = user.getUsername();
 			this.email = user.getEmail();
+			this.token = token;
 		}
 	}
 

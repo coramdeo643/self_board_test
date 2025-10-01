@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/api/boards")
 @RequiredArgsConstructor
 public class BoardCont {
 
@@ -25,7 +26,7 @@ public class BoardCont {
 		return ResponseEntity.ok(new ApiUtil<>(boardList));
 	}
 
-	@GetMapping("/api/board/{id}/detail")
+	@GetMapping("/{id}/detail")
 	public ResponseEntity<ApiUtil<BoardResp.DetailDTO>> detail(
 			@PathVariable(name = "id") Long id,
 			@RequestAttribute(value = Def.S_USER, required = false) SessionUser sUser) {
@@ -33,7 +34,7 @@ public class BoardCont {
 		return ResponseEntity.ok(new ApiUtil<>(detailDTO));
 	}
 
-	@PostMapping("/api/boards")
+	@PostMapping
 	public ResponseEntity<?> save(
 			@Valid @RequestBody BoardRequ.SaveDTO saveDTO, Error error,
 			@RequestAttribute(value = Def.S_USER) SessionUser sUser) {
@@ -41,7 +42,7 @@ public class BoardCont {
 		return ResponseEntity.status(HttpStatus.CREATED).body(new ApiUtil<>(sBoard));
 	}
 
-	@PutMapping("/api/board/{id}")
+	@PutMapping("/{id}")
 	public ResponseEntity<?> update(
 			@PathVariable(name = "id") Long id,
 			@Valid @RequestBody BoardRequ.UpdateDTO updateDTO, Error error,
@@ -50,7 +51,7 @@ public class BoardCont {
 		return ResponseEntity.ok(new ApiUtil<>(uBoard));
 	}
 
-	@DeleteMapping("/api/board/{id}")
+	@DeleteMapping("/{id}")
 	public ResponseEntity<ApiUtil<String>> delete(
 			@PathVariable(name = "id") Long id,
 			@RequestAttribute(Def.S_USER) SessionUser sUser) {

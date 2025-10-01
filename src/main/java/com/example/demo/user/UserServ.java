@@ -26,10 +26,11 @@ public class UserServ {
 		return new UserResp.JoinDTO(joinedUser);
 	}
 
-	public String login(UserRequ.LoginDTO loginDTO) {
+	public UserResp.LoginDTO login(UserRequ.LoginDTO loginDTO) {
 		User selectedUser = userRepo.findByUsernameAndPassword(loginDTO.getUsername(), loginDTO.getPassword())
 				.orElseThrow(() -> new Ex401("Invalid username or password"));
-		return JwtUtil.create(selectedUser);
+		String jwtToken = JwtUtil.create(selectedUser);
+		return new UserResp.LoginDTO(selectedUser, jwtToken);
 	}
 
 	public UserResp.DetailDTO findUserById(Long reqUserId, Long sessionUserId) {
