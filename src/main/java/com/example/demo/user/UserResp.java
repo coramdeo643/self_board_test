@@ -3,9 +3,7 @@ package com.example.demo.user;
 import lombok.Builder;
 import lombok.Data;
 
-import java.awt.*;
-
-public class UserRes {
+public class UserResp {
 
 	@Data
 	public static class JoinDTO {

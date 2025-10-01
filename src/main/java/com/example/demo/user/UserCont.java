@@ -11,14 +11,14 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
-public class UserCon {
+public class UserCont {
 
-	private final UserSer userSer;
+	private final UserServ userServ;
 
 	@PostMapping("/join")
 	public ResponseEntity<?> join(
-			@Valid @RequestBody UserReq.JoinDTO joinDTO, Error error) {
-		UserRes.JoinDTO jUser = userSer.join(joinDTO);
+			@Valid @RequestBody UserRequ.JoinDTO joinDTO, Error error) {
+		UserResp.JoinDTO jUser = userServ.join(joinDTO);
 		return ResponseEntity
 				.status(HttpStatus.CREATED)
 				.body(new ApiUtil<>(jUser));
@@ -26,8 +26,8 @@ public class UserCon {
 
 	@PostMapping("/login")
 	public ResponseEntity<?> login(
-			@Valid @RequestBody UserReq.LoginDTO loginDTO, Error error) {
-		String jwtToken = userSer.login(loginDTO);
+			@Valid @RequestBody UserRequ.LoginDTO loginDTO, Error error) {
+		String jwtToken = userServ.login(loginDTO);
 		return ResponseEntity.ok()
 				.header(Def.AUTH, Def.BEAR + jwtToken)
 				.body(new ApiUtil<>(null));
@@ -38,7 +38,7 @@ public class UserCon {
 			@PathVariable(name = "id") Long id,
 			@RequestAttribute(Def.S_USER) SessionUser sUser) {
 		if (sUser == null) throw new Ex401("Not authorized access");
-		UserRes.DetailDTO userInfo = userSer.findUserById(id, sUser.getId());
+		UserResp.DetailDTO userInfo = userServ.findUserById(id, sUser.getId());
 		return ResponseEntity.ok(new ApiUtil<>(userInfo));
 	}
 
@@ -46,9 +46,9 @@ public class UserCon {
 	public ResponseEntity<?> updateUserInfo(
 			@PathVariable(name = "id") Long id,
 			@RequestAttribute(Def.S_USER) SessionUser sUser,
-			@Valid @RequestBody UserReq.UpdateDTO updateDTO, Error error) {
+			@Valid @RequestBody UserRequ.UpdateDTO updateDTO, Error error) {
 		if (sUser == null) throw new Ex401("Not authorized access");
-		UserRes.UpdateDTO uUser = userSer.updateById(id, sUser.getId(), updateDTO);
+		UserResp.UpdateDTO uUser = userServ.updateById(id, sUser.getId(), updateDTO);
 		return ResponseEntity.ok().body(new ApiUtil<>(uUser));
 	}
 
