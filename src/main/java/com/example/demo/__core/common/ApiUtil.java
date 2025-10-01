@@ -3,13 +3,13 @@ package com.example.demo.__core.common;
 import lombok.Data;
 
 @Data
-public class ApiUtil {
+public class ApiUtil<T> {
 
 	private Integer status;
 	private String msg;
-	private String body;
+	private T body;
 
-	public ApiUtil(String body) {
+	public ApiUtil(T body) {
 		this.status = 200;
 		this.msg = "success";
 		this.body = body;
