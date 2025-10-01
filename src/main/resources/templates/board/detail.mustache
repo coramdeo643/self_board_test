@@ -5,12 +5,12 @@
     <input type="hidden" id="boardId" value="{{board.id}}">
 
     <!-- 수정삭제버튼 (작성자만 보이도록) -->
-    {{#board.isOwner}}
+    {{#board.isBoardOwner}}
         <div class="d-flex justify-content-end">
             <a href="/board/{{board.id}}/update-form" class="btn btn-warning me-1">수정</a>
             <button id="deleteBtn" class="btn btn-danger">삭제</button>
         </div>
-    {{/board.isOwner}}
+    {{/board.isBoardOwner}}
 
     <div class="d-flex justify-content-end">
         <b>작성자</b> : {{board.authorName}}

@@ -44,6 +44,7 @@ public class UserServ {
 			Long reqUserId, Long sessionUserId, UserRequ.UpdateDTO updateDTO) {
 		if (!reqUserId.equals(sessionUserId)) throw new Ex403("Not authorized access");
 		User sUser = userRepo.findById(reqUserId).orElseThrow(() -> new Ex404("User not found"));
+		sUser.update(updateDTO);
 		return new UserResp.UpdateDTO(sUser);
 	}
 }

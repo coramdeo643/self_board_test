@@ -1,5 +1,6 @@
 package com.example.demo.user;
 
+import com.example.demo.board.BoardRequ;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Data;
@@ -36,5 +37,10 @@ public class User {
 		this.password = password;
 		this.email = email;
 		this.createdAt = createdAt;
+	}
+
+	public void update(UserRequ.UpdateDTO updateDTO) {
+		this.password = updateDTO.getPassword();
+		this.email = updateDTO.getEmail();
 	}
 }
