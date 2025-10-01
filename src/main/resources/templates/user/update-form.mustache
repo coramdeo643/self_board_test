@@ -1,24 +1,27 @@
 {{> layout/header}}
 
 <div class="container p-5">
-
-    <!-- 요청을 하면 localhost:8080/join POST로 요청됨
-    username=사용자입력값&password=사용자값&email=사용자입력값 -->
-
     <div class="card">
         <div class="card-header"><b>회원수정을 해주세요</b></div>
         <div class="card-body">
-            <form action="/user/update" method="post" enctype="application/x-www-form-urlencoded">
+            <!-- action, method 제거, id 추가 -->
+            <form id="updateForm">
+                <!-- userId를 hidden으로 저장 (서버에서 전달받아야 함) -->
+                <input type="hidden" id="userId" value="{{user.id}}">
+
                 <div class="mb-3">
-                    <input type="text" class="form-control" placeholder="Enter username" name="username" disabled>
+                    <input type="text" class="form-control" placeholder="Enter username"
+                           name="username" id="username" value="{{user.username}}" disabled>
                 </div>
                 <div class="mb-3">
-                    <input type="password" class="form-control" placeholder="Enter password" name="password">
+                    <input type="password" class="form-control" placeholder="Enter password"
+                           name="password" id="password" required>
                 </div>
                 <div class="mb-3">
-                    <input type="email" class="form-control" placeholder="Enter email" name="email" disabled>
+                    <input type="email" class="form-control" placeholder="Enter email"
+                           name="email" id="email" value="{{user.email}}" required>
                 </div>
-                <button type="submit" class="btn btn-primary form-control">회원가입수정</button>
+                <button type="submit" class="btn btn-primary form-control">회원정보 수정</button>
             </form>
         </div>
     </div>

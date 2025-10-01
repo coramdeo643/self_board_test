@@ -1,20 +1,23 @@
 {{> layout/header}}
 
 <div class="container p-5">
+    <!-- hidden으로 boardId 저장 -->
+    <input type="hidden" id="boardId" value="{{board.id}}">
+
     <div class="card">
-        <div class="card-header"><b>글쓰기 화면입니다</b></div>
+        <div class="card-header"><b>게시글 수정</b></div>
         <div class="card-body">
             <!-- action, method 제거, id 추가 -->
-            <form id="saveForm">
+            <form id="updateForm">
                 <div class="mb-3">
                     <input type="text" class="form-control" placeholder="Enter title"
-                           name="title" id="title" required>
+                           name="title" id="title" value="{{board.title}}" required>
                 </div>
                 <div class="mb-3">
                     <textarea class="form-control" rows="5" placeholder="Enter content"
-                              name="content" id="content" required></textarea>
+                              name="content" id="content" required>{{board.content}}</textarea>
                 </div>
-                <button type="submit" class="btn btn-primary form-control">글쓰기완료</button>
+                <button type="submit" class="btn btn-warning form-control">수정완료</button>
             </form>
         </div>
     </div>
